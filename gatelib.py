@@ -53,6 +53,12 @@ def run(file):
                             raise NameError(f"Error: Variable '{var_name}' not declared")
                     except IndexError:
                         raise IndexError(f"Error processing print line: {line}")
+                    
+                elif line.startswith(""):  # Empty line
+                    pass
+
+                elif line.startswith("#"):  # Comment line
+                    pass
 
                 else:
                     raise SyntaxError(f"Unknown command: {line}")

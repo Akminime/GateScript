@@ -1,3 +1,23 @@
 var, int:testAlpha
 set, testAlpha:15
 prnt, testAlpha
+
+var, float:testBeta
+set, testBeta:3.14
+prnt, testBeta
+
+var, str:testGamma
+set, testGamma:"Hello, World!"
+prnt, testGamma
+
+var, bool:testDelta
+set, testDelta:true
+prnt, testDelta
+
+var, list:int:testEpsilon
+set, testEpsilon:[1, 2, 3, 4, 5]
+prnt, testEpsilon
+
+var, dict:str,int:testZeta
+set, testZeta:{"key1": 10, "key2": 20}
+prnt, testZeta
