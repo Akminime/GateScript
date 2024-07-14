@@ -1,0 +1,3 @@
+var, int:testAlpha
+set, testAlpha:15
+prnt, testAlpha
