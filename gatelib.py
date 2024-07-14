@@ -1,4 +1,4 @@
-def debug(file):
+def run(file):
     """
     This function reads a .gate file and simulates a simple debugging tool for a custom programming language.
     The .gate file contains commands to declare, assign values, and print variables.
@@ -68,8 +68,4 @@ def validate_type(var_type, var_value):
         return var_value.isdigit()
     elif var_type == "str":
         return var_value.startswith('"') and var_value.endswith('"')
-    return False
-
-
-def run(file):
-    print("Opeing file: {file}")
+    return FalseW
