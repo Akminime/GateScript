@@ -82,22 +82,20 @@ def validate_type(var_type, var_value):
         return var_value.startswith('"') and var_value.endswith('"')
     elif var_type == "bool":
         return var_value.lower() in ["true", "false"]
-    elif var_type.startswith("list:"):
-        list_type = var_type.split(":")[1]
+    elif var_type.startswith("list:int"):
         if var_value.startswith("[") and var_value.endswith("]"):
             try:
                 elements = eval(var_value)  # Safely evaluate list
-                return all(validate_type(list_type, elem) for elem in elements)
+                return all(isinstance(elem, int) for elem in elements)
             except Exception:
                 return False
         return False
-    elif var_type.startswith("dict:"):
-        dict_types = var_type.split(":")[1].split(",")
+    elif var_type.startswith("dict:str,int"):
         if var_value.startswith("{") and var_value.endswith("}"):
             try:
                 elements = eval(var_value)  # Safely evaluate dictionary
                 for key, val in elements.items():
-                    if not (validate_type(dict_types[0], key) and validate_type(dict_types[1], val)):
+                    if not (isinstance(key, str) and isinstance(val, int)):
                         return False
                 return True
             except Exception:
