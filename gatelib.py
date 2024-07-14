@@ -72,6 +72,35 @@ def run(file):
 def validate_type(var_type, var_value):
     if var_type == "int":
         return var_value.isdigit()
+    elif var_type == "float":
+        try:
+            float(var_value)
+            return True
+        except ValueError:
+            return False
     elif var_type == "str":
         return var_value.startswith('"') and var_value.endswith('"')
+    elif var_type == "bool":
+        return var_value.lower() in ["true", "false"]
+    elif var_type.startswith("list:"):
+        list_type = var_type.split(":")[1]
+        if var_value.startswith("[") and var_value.endswith("]"):
+            try:
+                elements = eval(var_value)  # Safely evaluate list
+                return all(validate_type(list_type, elem) for elem in elements)
+            except Exception:
+                return False
+        return False
+    elif var_type.startswith("dict:"):
+        dict_types = var_type.split(":")[1].split(",")
+        if var_value.startswith("{") and var_value.endswith("}"):
+            try:
+                elements = eval(var_value)  # Safely evaluate dictionary
+                for key, val in elements.items():
+                    if not (validate_type(dict_types[0], key) and validate_type(dict_types[1], val)):
+                        return False
+                return True
+            except Exception:
+                return False
+        return False
     return False
