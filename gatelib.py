@@ -68,4 +68,4 @@ def validate_type(var_type, var_value):
         return var_value.isdigit()
     elif var_type == "str":
         return var_value.startswith('"') and var_value.endswith('"')
-    return FalseW
+    return False
